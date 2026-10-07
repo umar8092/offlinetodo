@@ -1,6 +1,6 @@
 # OfflineTodo
 
-A free **private to-do list that works offline**. No account, no ads, no tracking. Your tasks stay on your own device.
+A **free online to-do list with no registration**. It works offline, it's private, and your tasks stay on your own device. No account, no ads, no tracking.
 
 **Live demo:** [umar8092.github.io/offlinetodo](https://umar8092.github.io/offlinetodo/)
 
@@ -13,6 +13,7 @@ The app follows your device's light or dark setting.
 ## Features
 
 - **Works offline.** After the first visit it opens and works with no connection.
+- **No registration.** No account, email or password. Open it and start.
 - **Private.** Tasks are saved only in your browser. Nothing is sent anywhere, and the app makes no network requests except loading its own files.
 - **Installable.** Add it to your home screen or desktop and it opens like a normal app.
 - **Due dates** with labels like "Due today", "Due tomorrow" and "Overdue 3 days".
@@ -21,6 +22,7 @@ The app follows your device's light or dark setting.
 - **Reorder** by dragging, or with the up and down buttons (works on touch screens).
 - **Edit** a task in place.
 - **Undo** after deleting a task, clearing completed tasks or importing a backup.
+- **Copy as checklist** or **Share** your list as plain text (`- [ ] task`, one per line) that pastes into Notes, Keep, Notion, Obsidian and more. On phones, Share opens the system share menu. It copies what you are looking at, so a filter or search applies.
 - **Export and import** your tasks as a file, to back them up or move them to another device.
 - **Keyboard friendly.** Enter adds a task, `/` jumps to search, Esc cancels an edit.
 

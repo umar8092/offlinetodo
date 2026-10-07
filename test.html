@@ -65,6 +65,14 @@ check('Search ignores case and spaces around', ids(C.visible(mix, 'all', '  BUY 
 check('Search and filter combine', ids(C.visible(mix, 'done', 'buy')) === 'Buy bread');
 check('Counts are right', (c => c.active === 1 && c.done === 2)(C.counts(mix)));
 
+// checklist text
+const cl = C.toChecklist([t('Buy milk', { due: '2026-06-11', priority: 2 }), t('Call mum', { done: true }), t('Water plants', { priority: 0 }), t('Two\nlines')]).split('\n');
+check('Checklist: an open task is "- [ ]" with due date and priority', cl[0] === '- [ ] Buy milk (due 2026-06-11, high priority)');
+check('Checklist: a done task is "- [x]"', cl[1] === '- [x] Call mum');
+check('Checklist: low priority is noted, normal is not', cl[2] === '- [ ] Water plants (low priority)');
+check('Checklist: line breaks inside a task never split it into two lines', cl.length === 4 && cl[3] === '- [ ] Two lines');
+check('Checklist: an empty list gives empty text', C.toChecklist([]) === '');
+
 const out = document.getElementById('out');
 results.forEach(r => {
     const li = document.createElement('li');

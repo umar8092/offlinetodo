@@ -206,6 +206,37 @@
         }
     });
 
+    // ----- copy and share the list as a checklist (whatever the filter and search are showing) -----
+    async function copyText(text) {
+        try { await navigator.clipboard.writeText(text); return true; } catch (e) { /* fall back below */ }
+        const box = el('textarea');          // older browsers, or pages the browser will not give clipboard access
+        box.value = text;
+        box.setAttribute('readonly', '');
+        box.style.cssText = 'position:fixed;opacity:0;top:0;left:0';
+        document.body.append(box);
+        box.select();
+        let ok = false;
+        try { ok = document.execCommand('copy'); } catch (e) { /* ok stays false */ }
+        box.remove();
+        return ok;
+    }
+    const checklist = () => TodoCore.toChecklist(TodoCore.visible(tasks, filter, query));
+    $('copy').addEventListener('click', async () => {
+        const text = checklist();
+        if (!text) return toast('Nothing to copy.');
+        const n = text.split('\n').length;
+        toast(await copyText(text) ? `Copied ${n} task${n === 1 ? '' : 's'} as a checklist.` : 'Could not copy. Your browser blocked it.');
+    });
+    if (navigator.share) {
+        $('share').hidden = false;
+        $('share').addEventListener('click', async () => {
+            const text = checklist();
+            if (!text) return toast('Nothing to share.');
+            try { await navigator.share({ title: 'My to-do list', text }); }
+            catch (e) { if (e.name !== 'AbortError') toast('Could not share.'); }   // closing the share sheet is not an error
+        });
+    }
+
     // ----- backup -----
     $('export').addEventListener('click', () => {
         if (!tasks.length) return toast('Nothing to export yet.');

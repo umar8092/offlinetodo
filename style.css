@@ -47,7 +47,7 @@ body {
 
 header { text-align: center; margin-bottom: 1.2rem; }
 h1 { margin: 0; font-size: 1.9rem; letter-spacing: -.02em; }
-.sub { margin: .35rem 0 .7rem; color: var(--muted); }
+.sub { margin: .35rem 0 .7rem; color: var(--muted); font-size: 1rem; font-weight: 400; line-height: 1.45; }
 .pill { display: inline-block; margin: 0; padding: .2rem .7rem; border-radius: 999px; font-size: .8rem; border: 1px solid var(--line); color: var(--muted); }
 .pill.ok { color: var(--accent); border-color: var(--accent); }
 
@@ -136,7 +136,7 @@ button.primary:hover { filter: brightness(1.08); }
 button.link { border: 0; background: none; color: var(--accent); cursor: pointer; text-decoration: underline; padding: .2rem; }
 button.link:disabled { color: var(--muted); text-decoration: none; cursor: default; opacity: .6; }
 
-.backup { display: flex; justify-content: center; gap: .6rem; margin-top: .6rem; }
+.backup { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; margin-top: .6rem; }
 .backup button { padding: .5rem 1rem; border-radius: 10px; border: 1px solid var(--line); background: transparent; cursor: pointer; font-size: .9rem; }
 .backup button:hover { background: var(--card); }
 

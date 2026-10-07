@@ -89,5 +89,16 @@
         return { done, active: list.length - done };
     }
 
-    root.TodoCore = { MAX_TEXT, uid, normalizeTask, parseImport, exportJSON, dueInfo, place, visible, counts };
+    // A plain-text checklist, one task per line. Pastes into Notes, Keep, Notion, Obsidian and most other apps.
+    function toChecklist(list) {
+        return list.map(t => {
+            const extra = [];
+            if (t.due) extra.push('due ' + t.due);
+            if (t.priority === 2) extra.push('high priority');
+            if (t.priority === 0) extra.push('low priority');
+            return '- [' + (t.done ? 'x' : ' ') + '] ' + t.text.replace(/\s*[\r\n]+\s*/g, ' ') + (extra.length ? ' (' + extra.join(', ') + ')' : '');
+        }).join('\n');
+    }
+
+    root.TodoCore = { MAX_TEXT, uid, normalizeTask, parseImport, exportJSON, toChecklist, dueInfo, place, visible, counts };
 })(window);
