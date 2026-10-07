@@ -6,8 +6,9 @@ const FILES = ['./', 'index.html', 'style.css', 'core.js', 'script.js', 'favicon
     'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png'];
 
 self.addEventListener('install', event => {
-    event.waitUntil(// cache: 'reload' skips the browser's own short-lived cache so the saved copy is always the newest files
-    caches.open(CACHE).then(cache => cache.addAll(FILES.map(file => new Request(file, { cache: 'reload' })))).then(() => self.skipWaiting()));
+    // cache: 'reload' skips the browser's own short-lived cache, so the saved copy is always the newest files
+    const requests = FILES.map(file => new Request(file, { cache: 'reload' }));
+    event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(requests)).then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', event => {
